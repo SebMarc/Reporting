@@ -35,7 +35,9 @@ class AppFixtures extends Fixture
         $password = $this->encoder->encodePassword($user, 'admin');
         $user->setPassword($password);
         $user->setRoles(['ROLE_ADMIN']);
-        $user->setEmail($faker->email());
+        $user->setEmail('admin@admin.com')
+        ->setFirstname($faker->firstName())
+        ->setLastname($faker->lastName());
         $manager->persist($user);
 
         for($i = 0 ; $i <=4 ; $i++) {
@@ -43,7 +45,10 @@ class AppFixtures extends Fixture
         $user->setUsername($faker->name());
         $password = $this->encoder->encodePassword($user, 'user');
         $user->setPassword($password);
-        $user->setEmail($faker->email());
+        $user->setRoles(['ROLE_TECH']);
+        $user->setEmail($faker->email())
+        ->setFirstname($faker->firstName())
+        ->setLastname($faker->lastName());
         $manager->persist($user)
         ;
         }
@@ -53,10 +58,10 @@ class AppFixtures extends Fixture
         for($i = 0 ; $i <=4 ; $i++) {
         $customer = new Customer();
         $customer   ->setName($faker->company)
-                    ->setFirstname($faker->firstName)
-                    ->setLastname($faker->lastName)
-                    ->setPhone($faker->phoneNumber)
-                    ->setEmail($faker->email)
+                    ->setFirstname($faker->firstName())
+                    ->setLastname($faker->lastName())
+                    ->setPhone($faker->phoneNumber())
+                    ->setEmail($faker->email())
                     ->setEnable(true)
                     ->setAdress($faker->streetAddress)
                     ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
