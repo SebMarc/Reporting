@@ -17,7 +17,7 @@ class Commande
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $number;
 
@@ -36,12 +36,12 @@ class Commande
         return $this->id;
     }
 
-    public function getNumber(): ?string
+    public function getNumber(): ?int
     {
         return $this->number;
     }
 
-    public function setNumber(string $number): self
+    public function setNumber(int $number): self
     {
         $this->number = $number;
 

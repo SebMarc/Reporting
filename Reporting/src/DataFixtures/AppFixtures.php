@@ -59,7 +59,7 @@ class AppFixtures extends Fixture
                     ->setEmail($faker->email)
                     ->setEnable(true)
                     ->setAdress($faker->streetAddress)
-                    ->setPostalCode('90000')
+                    ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
                     ->setCity($faker->city);
                     $password = $this->encoder->encodePassword($user, 'user');
                     $customer->setPassword($password);
@@ -83,7 +83,7 @@ class AppFixtures extends Fixture
         // Creation de 5 commandes
         for($i = 0 ; $i <=4 ; $i++) {
             $order = new Commande();
-            $order  ->setNumber('9000')
+            $order  ->setNumber($faker->numberBetween(1000, 9000))
                     ->setAmount($faker->numberBetween(1000, 9000));
                     $randomcustomer = $customerList[mt_rand(0, count($customerList)-1)];
             $order  ->setCustomer($randomcustomer);
