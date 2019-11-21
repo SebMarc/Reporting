@@ -6,15 +6,23 @@ body {
     background-image: linear-gradient(#DD9D18, #AF692B);
 }
 
-.member-form {
+.user-form {
     background-image: linear-gradient(#DD9D18, #f1f1f1);
     border: 1px solid #ccc;
     width: 500px;
-    margin: 20px auto;
+    margin: 20px;
     padding: 20px;
     overflow: auto;
     box-shadow: 0px 0px 20px #aaa;
     border-radius: 10px;
     text-align: center;
     height: 100%;
+}
+
+.menu-li {
+    display: inline;
+}
+
+.profilchoice {
+    margin: 20px;
 }

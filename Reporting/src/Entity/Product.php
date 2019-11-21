@@ -33,10 +33,7 @@ class Product
      */
     private $updatedAt;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Customer", mappedBy="product")
-     */
-    private $customers;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="products")
@@ -46,7 +43,7 @@ class Product
  
     public function __construct()
     {
-        $this->customers = new ArrayCollection();
+     
         $this->createdAt = new \Datetime();
         $this->updatedAt = null;
     }
@@ -92,33 +89,7 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection|Customer[]
-     */
-    public function getCustomers(): Collection
-    {
-        return $this->customers;
-    }
-
-    public function addCustomer(Customer $customer): self
-    {
-        if (!$this->customers->contains($customer)) {
-            $this->customers[] = $customer;
-            $customer->addProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCustomer(Customer $customer): self
-    {
-        if ($this->customers->contains($customer)) {
-            $this->customers->removeElement($customer);
-            $customer->removeProduct($this);
-        }
-
-        return $this;
-    }
+   
 
     public function getCategory(): ?Category
     {

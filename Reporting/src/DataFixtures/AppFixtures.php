@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Customer;
 use App\Entity\Commande;
 use App\Entity\Product;
 use App\Entity\User;
@@ -16,7 +15,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AppFixtures extends Fixture
 {
     private $encoder;
-    public $customerList = [];
+    public $userList = [];
     public $productList = [];
 
     public function __construct(UserPasswordEncoderInterface $encoder)
@@ -29,46 +28,65 @@ class AppFixtures extends Fixture
     {
         $faker = Faker\Factory::create('fr_FR');
 
-        // Création d'un admin et de 5 users
+        // Création d'un admin
         $user = new User ();
-        $user->setUsername('admin');
+        $user   ->setEmail('admin@admin.com')
+                ->setRoles(['ROLE_ADMIN']);
         $password = $this->encoder->encodePassword($user, 'admin');
-        $user->setPassword($password);
-        $user->setRoles(['ROLE_ADMIN']);
-        $user->setEmail('admin@admin.com')
-        ->setFirstname($faker->firstName())
-        ->setLastname($faker->lastName());
+        $user   ->setPassword($password)
+                ->setUsername('admin')
+                ->setFirstname($faker->firstName())
+                ->setLastname($faker->lastName())
+                ->setName('admin')
+                ->setPhone($faker->phoneNumber())
+                ->setEnable(true)
+                ->setAdress($faker->streetAddress)
+                ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
+                ->setCity($faker->city);
+                $userList [] = $user;
+      
         $manager->persist($user);
 
-        for($i = 0 ; $i <=4 ; $i++) {
+        // Création de 10 tech
+        for($i = 0 ; $i <=9 ; $i++) {
             $user = new User ();
-        $user->setUsername($faker->name());
-        $password = $this->encoder->encodePassword($user, 'user');
-        $user->setPassword($password);
-        $user->setRoles(['ROLE_TECH']);
-        $user->setEmail($faker->email())
-        ->setFirstname($faker->firstName())
-        ->setLastname($faker->lastName());
+        $user   ->setEmail(sprintf('tech%d@teol.fr', $i))
+                ->setRoles(['ROLE_TECH']);
+        $password = $this->encoder->encodePassword($user, 'tech');
+        $user   ->setPassword($password);
+        $user   ->setUsername(sprintf('Technicien %d', $i))
+                ->setFirstname($faker->firstName())
+                ->setLastname($faker->lastName())
+                ->setName('')
+                ->setPhone($faker->phoneNumber())
+                ->setEnable(true)
+                ->setAdress($faker->streetAddress)
+                ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
+                ->setCity($faker->city);
+                $userList [] = $user;
+
         $manager->persist($user)
         ;
         }
 
 
-        //Création de 5 Customers
+        //Création de 10 Members
         for($i = 0 ; $i <=4 ; $i++) {
-        $customer = new Customer();
-        $customer   ->setName($faker->company)
+        $customer = new User();
+        $customer   ->setEmail(sprintf('member%d@member.fr', $i))
+                    ->setRoles(['ROLE_MEMBER']);
+        $password = $this->encoder->encodePassword($user, 'member');
+        $customer   ->setPassword($password)
+                    ->setUsername('')
                     ->setFirstname($faker->firstName())
                     ->setLastname($faker->lastName())
+                    ->setName($faker->company())
                     ->setPhone($faker->phoneNumber())
-                    ->setEmail($faker->email())
                     ->setEnable(true)
                     ->setAdress($faker->streetAddress)
                     ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
                     ->setCity($faker->city);
-                    $password = $this->encoder->encodePassword($user, 'user');
-                    $customer->setPassword($password);
-                    $customerList[] = $customer;
+                    $userList [] = $customer;
                     $manager->persist($customer)
                     ;
         }   
@@ -77,8 +95,6 @@ class AppFixtures extends Fixture
         for($i = 0 ; $i <=4 ; $i++) {
             $product = new Product();
             $product    ->setName($faker->word);
-                        $randomcustomer = $customerList[mt_rand(0, count($customerList)-1)];
-            $product    ->addCustomer($randomcustomer);
             $productList[] = $product;
             $manager->persist($product)
             ;
@@ -90,8 +106,7 @@ class AppFixtures extends Fixture
             $order = new Commande();
             $order  ->setNumber($faker->numberBetween(1000, 9000))
                     ->setAmount($faker->numberBetween(1000, 9000));
-                    $randomcustomer = $customerList[mt_rand(0, count($customerList)-1)];
-            $order  ->setCustomer($randomcustomer);
+            
                     //$randomproduct = $productList[mt_rand(0, count($productList)-1)];
             //$order  ->addProduct($randomproduct)
             $manager->persist($order)
@@ -106,11 +121,6 @@ class AppFixtures extends Fixture
             $manager->persist($category)
             ;
         }
-
-        
-        
-        
-
 
         $manager->flush();
     }

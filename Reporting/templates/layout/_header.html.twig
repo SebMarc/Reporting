@@ -7,23 +7,24 @@
    </head>
 
    <body>
-        <div class="d-flex headerband ">
-            <div class="headerband text-center w-75">
-                <a href="{{ path ('homepage')}}"><img src=" {{ asset('asset/image/homepage.png') }}" alt="Vue du site Teol Charolles"></a>
+        <div class="d-flex headerband">
+            <div class="headerband  ">
+                <a href="{{ path ('homepage')}}"><img src=" {{ asset('asset/image/homepage.png') }}" width = "979 px" height= "150 px" alt="Vue du site Teol Charolles"></a>
                 <a href="{{ path ('homepage')}}"><img width = "979 px" src=" {{ asset('asset/image/Sloganteol.png') }}" alt="Vue du site Teol Charolles"></a>
             </div>
+            
             <div class="d-flex mr-3 w-25">
-                <ul class="navbar-nav d-flex">
+                <ul class="nav d-flex mx-auto">
 
-                    <li class="nav-item">
-                        <a href="{{ path('homepage') }}" class="nav-link d-flex align-items-center">
-                            <i class="fa fa-home mr-2" aria-hidden="true"></i>
+                    <li class="nav-item ">
+                        <a href="{{ path('homepage') }}" class="nav-link d-flex align-items-center text-white">
+                            <i class="fa fa-home mr-2 text-white" aria-hidden="true" ></i>
                             Accueil <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <div class="dropdown">
-                            <a href="#" class="nav-link d-flex align-items-center dropdown-toggle" role="button"
+                            <a href="#" class="nav-link d-flex align-items-center dropdown-toggle text-white" role="button"
                             id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user mr-2" aria-hidden="true"></i>
                                 {% if app.user %}
@@ -36,12 +37,15 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     {% if is_granted('ROLE_TECH') %}
-                                        <a href="{{ path('producer_profil') }}" class="dropdown-item">Accès Technicien</a>
+                                        <a href="{{ path('member_profil') }}" class="dropdown-item">Mon compte</a>
                                     {% endif %}
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <a href="#" class="dropdown-item">Administration</a>
                                     {% endif %}
-                                    <a href="{{ path('member_profil') }}" class="dropdown-item">Mon profil</a>
+                                    {% if is_granted('ROLE_MEMBER') %}
+                                         <a href="{{ path('user_profil') }}" class="dropdown-item">Mon profil</a>
+                                    {% endif %}
+                                   
                                     <a href="{{ path('app_logout') }}" class="dropdown-item">Me déconnecter</a>
                                 {% else %}
                                     <a href="{{ path('app_login') }}" class="dropdown-item">Me connecter</a>
@@ -52,6 +56,7 @@
                     </li>
                 </ul>
             </div>
+            
         </div>
       
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -79,7 +84,7 @@
                     Adhérent
                     </a>
                         <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ path('member_profil')}}">Mon compte</a>
+                        <a class="dropdown-item" href="{{ path('user_profil')}}">Mon compte</a>
                         </div>
                 </li>
                 <li class="nav-item dropdown">

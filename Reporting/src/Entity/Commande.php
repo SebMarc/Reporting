@@ -26,10 +26,6 @@ class Commande
      */
     private $amount;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="commandes")
-     */
-    private $customer;
 
     public function getId(): ?int
     {
@@ -60,15 +56,5 @@ class Commande
         return $this;
     }
 
-    public function getCustomer(): ?Customer
-    {
-        return $this->customer;
-    }
-
-    public function setCustomer(?Customer $customer): self
-    {
-        $this->customer = $customer;
-
-        return $this;
-    }
+   
 }
