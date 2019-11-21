@@ -13,15 +13,25 @@
     </head>
     <body>
    
+   
 
         {% block header %}
             {% include 'layout/_header.html.twig'%}
         {% endblock %}
 
+            {# Flash Message{#}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} flash text-center">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
 
         {% block body %}{% endblock %}
 
-
+         {% block footer %} {% include 'layout/_footer.html.twig'%} {% endblock %}
 
         {% block javascripts %}
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -30,7 +40,7 @@
         <script src="https://kit.fontawesome.com/18272388b8.js" crossorigin="anonymous"></script>
         {% endblock %}
         
-        {% block footer %} {% include 'layout/_footer.html.twig'%} {% endblock %}
+       
 
     </body>
 </html>

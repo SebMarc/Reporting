@@ -1,5 +1,9 @@
 body {
-    height: 100%;
+    background: url('https://source.unsplash.com/J33qmCVr02A') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 
 .headerband {
@@ -25,4 +29,29 @@ body {
 
 .profilchoice {
     margin: 20px;
+}
+
+@media (max-width: 1200px) {
+    .d-flex {
+        flex-direction: column;
+    }
+}
+
+.presentation {
+    width: 30%;
+}
+
+h4 {
+    padding: 10px;
+    text-decoration: underline;
+}
+
+li {
+    list-style: none;
+}
+
+.user-form,
+.presentation,
+.profilchoice {
+    margin-top: 7rem;
 }

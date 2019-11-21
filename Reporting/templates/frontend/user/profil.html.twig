@@ -6,7 +6,7 @@
 	<div class="d-flex">
 		<div class="user-form">
 			
-			{% if is_granted('ROLE_MEMBER', 'ROLE_TECH') %}
+			{% if is_granted('ROLE_MEMBER') %}
 				<h1 class="text-white">Mon Profil</h1>
 				{# Détails du profil du User loggué #}
 				<p>
