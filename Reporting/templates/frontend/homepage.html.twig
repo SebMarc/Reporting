@@ -4,9 +4,21 @@
 
 {% block body %}
 
+<div>
+{# Flash Message{#}
+    {% for label, messages in app.flashes(['success', 'warning', 'danger', 'info']) %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} flash text-center mt-5">
+            {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
 
-<div class="presentation mx-4 my-0 p-3 border rounded border-warning bg-warning float-right">
-<h2 class="text-center text-white" id ="domaine">Domaines d'activité</h2>
+
+<div class="presentation mx-4 my-0 p-3 border rounded border-warning  float-right mb-3">
+        
+<h2 class="text-center" id ="domaine">Domaines d'activité</h2>
 <h4>Productions animales</h4>
 <img src="{{ asset('asset/image/vache.jpg') }}" alt="Photo Charolaise" class="float-left rounded img-circle mr-2 " width="200" height="150">
 <p>Valorisation de la production céréalière des adhérents.
@@ -36,8 +48,8 @@ Livraisons de paille tout au long de l'année.</p>
 <p>Distribution de fuel de chauffage ou carburant agricole depuis notre filiale EURL BOURBINCE DISTRIBUTION.</p>
 </div>
 
-<div class="presentation mx-5 p-3 border rounded border-warning bg-warning">
-<h2 class="text-center p-2 text-white" id ="presentation">Présentation de la coopérative</h2>
+<div class="presentation mx-5 p-3 border rounded border-warning ">
+<h2 class="text-center p-2" id ="presentation">Présentation de la coopérative</h2>
 <h4>Le capital</h4>
 <img src="{{ asset('asset/image/usine.jpg') }}" alt="Usine Charolles" class="float-left rounded img-circle m-2 " width="200" height="150">
 <p>Le capital social de la société est détenu par les agriculteurs.</p>
@@ -59,8 +71,8 @@ Il est responsable du personnel et de la mise en oeuvre des décisions prises pa
 Directeur général : Philippe Saudin</p>
 </div>
 
-<div class="presentation mx-5 my-5 p-3 border rounded border-warning bg-warning ">
-<h2 class="text-center text-white" id ="implantation">Notre implantation</h2>
+<div class="presentation mx-5 my-5 p-3 border rounded border-warning ">
+<h2 class="text-center" id ="implantation">Notre implantation</h2>
 <img src="{{ asset('asset/image/carte-implantation.jpg') }}" alt="Implantation Teol" class="d-block mx-auto rounded">
 <h2 class="text-center" id ="actualité">Actualités</h2>
 <h2 class="text-center" id ="contact">Contact</h2>

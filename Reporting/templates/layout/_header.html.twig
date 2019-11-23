@@ -7,7 +7,7 @@
    </head>
 
    <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark d-flex justify-content-between fixed-top">
+    <nav class=" headermenu navbar navbar-expand-sm  navbar-dark d-flex justify-content-between fixed-top">
         <div class="d-flex">
          <!-- Brand -->
             <a class="navbar-brand" href="{{ path('homepage') }}">TEOL</a>
@@ -23,7 +23,6 @@
                             <a class="dropdown-item" href="#domaine">Domaines d'activité</a>
                             <a class="dropdown-item" href="#implantation">Notre implantation</a>
                             <a class="dropdown-item" href="#actualité">Actualités</a>
-                            <a class="dropdown-item" href="#contact">Contact</a>
                             <a class="dropdown-item" href="#info">Infos pratiques</a>
                         </div>
                 </li>
@@ -105,6 +104,10 @@
                         Accueil <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <a href="{{ path('contact') }}" class="nav-link d-flex align-items-center text-white">
+                        <i class="fas fa-envelope mr-2 " aria-hidden="true" ></i>
+                        Contact <span class="sr-only">(current)</span>
+                    </a>
                 <li class="nav-item">
                         <div class="dropdown">
                             <a href="#" class="nav-link d-flex align-items-center dropdown-toggle text-white" role="button"

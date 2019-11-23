@@ -2,7 +2,12 @@
 
 {% block title %}Profil Membre{% endblock %}
 
+
+
 {% block body %}
+
+
+
 	<div class="d-flex">
 		<div class="user-form">
 			
@@ -51,6 +56,14 @@
 			<button type="button" class="btn btn-warning btn-lg btn-block">Mes produits</button>
 			<button type="button" class="btn btn-warning btn-lg btn-block">Mes tarifs</button>
 			<button type="button" class="btn btn-warning btn-lg btn-block">Mon conseiller</button>
+			{# Flash Message{#}
+			{% for label, messages in app.flashes(['success', 'warning', 'danger', 'info']) %}
+				{% for message in messages %}
+					<div class="alert alert-{{ label }} flash text-center mt-3">
+					{{ message }}
+					</div>
+				{% endfor %}
+			{% endfor %} 
 		</div>
 		{% endif %}
 	</div>
