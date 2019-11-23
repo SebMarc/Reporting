@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ShopController!{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Administration des magasins</h1>
+<div class="user-form">
+
+    <h3>Saisissez un magasin</h3>
+
+    {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+        <button class="btn btn-warning">Envoyer</button>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -47,8 +47,8 @@ class MainController extends AbstractController
                 'success',
                 'L\'email a été envoyé avec succès !'
             );
-/*
-            return $this->redirectToRoute('homepage'); */
+
+            return $this->redirectToRoute('homepage'); 
         }
 
         return $this->render('frontend/main/contact.html.twig', [

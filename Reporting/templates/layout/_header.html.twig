@@ -7,7 +7,7 @@
    </head>
 
    <body>
-    <nav class=" headermenu navbar navbar-expand-sm  navbar-dark d-flex justify-content-between fixed-top">
+    <nav class=" headermenu navbar navbar-expand-sm  navbar-dark d-flex justify-content-between ">
         <div class="d-flex">
          <!-- Brand -->
             <a class="navbar-brand" href="{{ path('homepage') }}">TEOL</a>
@@ -126,7 +126,7 @@
                                         <a href="{{ path('user_profil') }}" class="dropdown-item">Mon compte</a>
                                     {% endif %}
                                     {% if is_granted('ROLE_ADMIN') %}
-                                        <a href="#" class="dropdown-item">Administration</a>
+                                        <a href="{{ path('admin_homepage') }}" class="dropdown-item">Administration</a>
                                     {% endif %}
                                     {% if is_granted('ROLE_MEMBER') %}
                                          <a href="{{ path('user_profil') }}" class="dropdown-item">Mon profil</a>

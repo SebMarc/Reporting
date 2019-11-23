@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration du Site{% endblock %}
+
+{% block body %}
+<h1>Administration du Site</h1>
+<a href="{{ path('backend_shop_edit') }}" class="btn btn-warning">
+                        Nouveau magasin</i>
+                    </a>
+{% endblock %}

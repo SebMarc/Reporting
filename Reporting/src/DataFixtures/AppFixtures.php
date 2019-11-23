@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Commande;
 use App\Entity\Product;
 use App\Entity\User;
+use App\Entity\Shop;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
@@ -119,6 +120,21 @@ class AppFixtures extends Fixture
             $category = new Category();
             $category ->setName($faker->word);
             $manager->persist($category)
+            ;
+        }
+
+        // Creation de 9 magasins
+        for($i = 0 ; $i<= 4 ; $i++) {
+            $shop = new Shop();
+            $shop   ->setName($faker->company())
+            ->setAdress($faker->streetAddress())
+            ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
+            ->setCity($faker->city())
+            ->setPhone($faker->phoneNumber())
+            ->setManager($faker->name())
+            ->setClose($faker->dayOfWeek())
+            ->setFax($faker->phoneNumber());
+            $manager->persist($shop)
             ;
         }
 
