@@ -4,6 +4,7 @@ namespace App\Controller\Frontend;
 
 use App\Entity\Contact;
 use App\Form\ContactFormType;
+use App\Notification\ContactNotification;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,23 +31,24 @@ class MainController extends AbstractController
      * @param Request $request
      *
      */
-    public function contact(Request $request)
+    public function contact(Request $request, ContactNotification $notification)
     {
-        $contactForm = new Contact();
-        $form = $this->createForm(ContactFormType::class, $contactForm);
+        $contact = new Contact();
+        $form = $this->createForm(ContactFormType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $notification->notify($contact);
             $manager= $this->getDoctrine()->getManager();
-            $manager->persist($contactForm);
+            $manager->persist($contact);
             $manager->flush();
 
             $this->addFlash(
                 'success',
                 'L\'email a été envoyé avec succès !'
             );
-
-            return $this->redirectToRoute('homepage');
+/*
+            return $this->redirectToRoute('homepage'); */
         }
 
         return $this->render('frontend/main/contact.html.twig', [
