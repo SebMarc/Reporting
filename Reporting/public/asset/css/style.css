@@ -39,6 +39,7 @@ body {
 
 .presentation {
     width: 30%;
+    opacity: 0.75;
 }
 
 h4 {
