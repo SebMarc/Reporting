@@ -2,7 +2,7 @@
 
 namespace App\Controller\Backend;
 
-use App\Entity\Shop;
+use App\Entity\Magasin;
 use App\Form\ShopFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,7 +15,7 @@ class ShopController extends AbstractController
      */
     public function shopedit(Request $request)
     {
-        $shop = new Shop();
+        $shop = new Magasin();
         $form = $this->createForm(ShopFormType::class, $shop);
         $form->handleRequest($request);
 

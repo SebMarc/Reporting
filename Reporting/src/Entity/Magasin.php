@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ShopRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MagasinRepository")
  */
-class Shop
+class Magasin
 {
     /**
      * @ORM\Id()
@@ -27,7 +27,7 @@ class Shop
     private $adress;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $postalCode;
 
@@ -44,18 +44,17 @@ class Shop
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $fax;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $manager;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $close;
-
-    /**
-     * @ORM\Column(type="string", length=255, mapped="true")
-     */
-    private $fax;
-
 
     public function getId(): ?int
     {
@@ -86,12 +85,12 @@ class Shop
         return $this;
     }
 
-    public function getPostalCode(): ?int
+    public function getPostalCode(): ?string
     {
         return $this->postalCode;
     }
 
-    public function setPostalCode(int $postalCode): self
+    public function setPostalCode(string $postalCode): self
     {
         $this->postalCode = $postalCode;
 
@@ -122,6 +121,18 @@ class Shop
         return $this;
     }
 
+    public function getFax(): ?string
+    {
+        return $this->fax;
+    }
+
+    public function setFax(string $fax): self
+    {
+        $this->fax = $fax;
+
+        return $this;
+    }
+
     public function getManager(): ?string
     {
         return $this->manager;
@@ -145,18 +156,4 @@ class Shop
 
         return $this;
     }
-
-    public function getFax(): ?string
-    {
-        return $this->fax;
-    }
-
-    public function setFax(string $fax): self
-    {
-        $this->fax = $fax;
-
-        return $this;
-    }
-
-    
 }

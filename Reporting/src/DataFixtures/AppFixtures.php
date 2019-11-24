@@ -6,7 +6,7 @@ use App\Entity\Category;
 use App\Entity\Commande;
 use App\Entity\Product;
 use App\Entity\User;
-use App\Entity\Shop;
+use App\Entity\Magasin;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
@@ -125,7 +125,7 @@ class AppFixtures extends Fixture
 
         // Creation de 9 magasins
         for($i = 0 ; $i<= 4 ; $i++) {
-            $shop = new Shop();
+            $shop = new Magasin();
             $shop   ->setName($faker->company())
             ->setAdress($faker->streetAddress())
             ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
