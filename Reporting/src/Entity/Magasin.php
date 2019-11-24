@@ -56,6 +56,13 @@ class Magasin
      */
     private $close;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enable;
+
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,12 +92,12 @@ class Magasin
         return $this;
     }
 
-    public function getPostalCode(): ?string
+    public function getPostalCode(): ?int
     {
         return $this->postalCode;
     }
 
-    public function setPostalCode(string $postalCode): self
+    public function setPostalCode(int $postalCode): self
     {
         $this->postalCode = $postalCode;
 
@@ -153,6 +160,18 @@ class Magasin
     public function setClose(string $close): self
     {
         $this->close = $close;
+
+        return $this;
+    }
+
+    public function getEnable(): ?bool
+    {
+        return $this->enable;
+    }
+
+    public function setEnable(bool $enable): self
+    {
+        $this->enable = $enable;
 
         return $this;
     }

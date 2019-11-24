@@ -25,16 +25,20 @@ class ShopFormType extends AbstractType
                 'label' => 'Ville'
             ])
             ->add('phone', TextType::class, [
-                'label' => 'Telephone'
+                'label' => 'Telephone',
+                'mapped' => true
             ])
             ->add('fax', TextType::class, [
-                'label' => 'Fax'
+                'label' => 'Fax',
+                'mapped' => true
             ])
             ->add('close', TextType::class, [
-                'label' => 'Fermeture'
+                'label' => 'Fermeture',
+                'mapped' => true
             ])
             ->add('manager', TextType::class, [
-                'label' => 'Manager'
+                'label' => 'Manager',
+                'mapped' => true
             ])
         ;
     }

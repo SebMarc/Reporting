@@ -118,7 +118,8 @@ class AppFixtures extends Fixture
         // Creation de 5 categories
         for($i = 0 ; $i <=4 ; $i++) {
             $category = new Category();
-            $category ->setName($faker->word);
+            $category   ->setName($faker->word)
+                        ->setEnable(true);
             $manager->persist($category)
             ;
         }
@@ -133,7 +134,8 @@ class AppFixtures extends Fixture
             ->setPhone($faker->phoneNumber())
             ->setManager($faker->name())
             ->setClose($faker->dayOfWeek())
-            ->setFax($faker->phoneNumber());
+            ->setFax($faker->phoneNumber())
+            ->setEnable(true);
             $manager->persist($shop)
             ;
         }

@@ -38,6 +38,11 @@ class Category
      */
     private $products;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enable;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -113,6 +118,18 @@ class Category
                 $product->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEnable(): ?bool
+    {
+        return $this->enable;
+    }
+
+    public function setEnable(bool $enable): self
+    {
+        $this->enable = $enable;
 
         return $this;
     }

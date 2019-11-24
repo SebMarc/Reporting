@@ -102,6 +102,7 @@
             "./config/packages/dev/easy_log_handler.yaml"
         ]
     },
+   
     "egulias/email-validator": {
         "version": "2.1.11"
     },
