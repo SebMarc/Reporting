@@ -51,17 +51,17 @@ class Magasin
      */
     private $manager;
 
+     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enable;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $close;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $enable;
-
-    
+   
 
     public function getId(): ?int
     {
@@ -152,6 +152,18 @@ class Magasin
         return $this;
     }
 
+    public function getEnable(): ?bool
+    {
+        return $this->enable;
+    }
+
+    public function setEnable(bool $enable): self
+    {
+        $this->enable = $enable;
+
+        return $this;
+    }
+
     public function getClose(): ?string
     {
         return $this->close;
@@ -164,15 +176,5 @@ class Magasin
         return $this;
     }
 
-    public function getEnable(): ?bool
-    {
-        return $this->enable;
-    }
-
-    public function setEnable(bool $enable): self
-    {
-        $this->enable = $enable;
-
-        return $this;
-    }
+    
 }

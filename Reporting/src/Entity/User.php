@@ -91,6 +91,11 @@ class User implements UserInterface
      */
     private $city;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $age;
+
     public function __toString() {
         return $this->email;
     }
@@ -308,6 +313,18 @@ class User implements UserInterface
     public function setCity(string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getAge(): ?string
+    {
+        return $this->age;
+    }
+
+    public function setAge(?string $age): self
+    {
+        $this->age = $age;
 
         return $this;
     }
