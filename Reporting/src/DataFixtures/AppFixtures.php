@@ -71,7 +71,7 @@ class AppFixtures extends Fixture
         }
 
 
-        //Création de 10 Members
+        //Création de 4 Members
         for($i = 0 ; $i <=4 ; $i++) {
         $customer = new User();
         $customer   ->setEmail(sprintf('member%d@member.fr', $i))

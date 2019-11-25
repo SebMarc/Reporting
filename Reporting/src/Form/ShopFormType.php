@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Magasin;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -40,7 +42,9 @@ class ShopFormType extends AbstractType
                 'label' => 'Manager',
                 'mapped' => true
             ])
-            ->add('enable')
+            ->add('enable', CheckboxType::class, [
+                'label' => false
+            ])
         ;
     }
 

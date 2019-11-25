@@ -105,6 +105,7 @@ class User implements UserInterface
 
         $this->createdAt = new \Datetime();
         $this->updatedAt = null;
+        $this->enable     = true;
        
     }
 

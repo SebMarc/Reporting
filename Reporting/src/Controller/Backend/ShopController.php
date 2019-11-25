@@ -32,7 +32,7 @@ class ShopController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Le magasin a été correctement intégré!'
+                'Le magasin a été correctement modifié!'
             );
 
             return $this->redirectToRoute('backend_shops_list'); 

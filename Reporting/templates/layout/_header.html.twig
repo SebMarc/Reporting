@@ -114,7 +114,7 @@
                             id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user mr-2" aria-hidden="true"></i>
                                 {% if app.user %}
-                                    Mon compte
+                                    Mon Espace
                                 {% else %}
                                     Identification
                                 {% endif %}
@@ -124,6 +124,7 @@
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     {% if is_granted('ROLE_TECH') %}
                                         <a href="{{ path('user_profil') }}" class="dropdown-item">Mon compte</a>
+                                        <a href="#" class="dropdown-item">Documentation</a>
                                     {% endif %}
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('admin_homepage') }}" class="dropdown-item">Administration</a>

@@ -61,7 +61,12 @@ class Magasin
      */
     private $close;
 
-   
+    public function __construct()
+    {
+        $this->enable     = true;
+        $this->createdAt  = new \DateTime();
+        $this->updatedAt  = null;
+    }
 
     public function getId(): ?int
     {

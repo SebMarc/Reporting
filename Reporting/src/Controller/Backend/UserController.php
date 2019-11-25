@@ -3,7 +3,7 @@
 namespace App\Controller\Backend;
 
 use App\Entity\User;
-use App\Form\UserUpdateProfilType;
+use App\Form\Backend\UserUpdateProfilType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,9 +17,8 @@ class UserController extends AbstractController
     public function edit(Request $request, User $user = null)
     {
         if (!$user) {
-            throw $this->createNotFoundException('Le magasin que vous recherchez n\'existe pas !');
+            throw $this->createNotFoundException('L\'utilisateur que vous recherchez n\'existe pas !');
         }
-
    
         $form = $this->createForm(UserUpdateProfilType::class, $user);
         $form->handleRequest($request);
@@ -32,7 +31,7 @@ class UserController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'L\'utilisateur a été correctement intégré!'
+                'L\'utilisateur a été correctement modifié!'
             );
 
             return $this->redirectToRoute('backend_users_list'); 

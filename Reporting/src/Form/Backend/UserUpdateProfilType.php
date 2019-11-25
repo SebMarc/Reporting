@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Backend;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
@@ -68,7 +68,10 @@ class UserUpdateProfilType extends AbstractType
             ->add('name', TextType::class, [
                 'label' =>'Société'
             ])
-            ->add('enable', HiddenType::class)
+            ->add('enable', CheckboxType::class, [
+                'label'    => false,
+                'required' => false,
+            ])
             ->addEventListener(
                 FormEvents::SUBMIT,
                 [$this, 'onSubmit']
