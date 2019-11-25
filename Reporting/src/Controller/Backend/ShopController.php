@@ -39,14 +39,14 @@ class ShopController extends AbstractController
         }
 
     
-        return $this->render('backend/shop/edit.html.twig', [
+        return $this->render('backend/magasin/edit.html.twig', [
             'shop' => $shop,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("backend/magasin/index", name="backend_shops_list")
+     * @Route("backend/shop/index", name="backend_shops_list")
      */
     public function showlist(MagasinRepository $magasinRepository, Request $request)
     {
@@ -70,8 +70,44 @@ class ShopController extends AbstractController
         }
         return $this->render('backend/magasin/index.html.twig', [
             'shops' => $shops,
-            'form' => $form
+            'form' => $form->createView()
         ]);
 
+    }
+
+    /**
+     * @Route("backend/shop/delete/{id}",
+     *     name="backend_shop_delete",
+     *     requirements={"id"="\d+"},
+     *     methods={"POST"})
+     */
+    public function delete(Request $request, Magasin $shop = null)
+    {
+        if (!$shop) {
+            throw $this->createNotFoundException('Le magasin que vous recherchez n\'existe pas !');
+        }
+
+        $submittedToken = $request->request->get('token');
+
+        if ($this->isCsrfTokenValid('delete-item', $submittedToken)) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($shop);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Le magasin a été supprimé avec succès !'
+            );
+        }
+        else {
+
+            $this->addFlash(
+                'error',
+                'Une erreur s\'est produite. Veuillez réessayer plus tard !'
+            );
+        }
+
+        return $this->redirectToRoute('backend_shops_list');
     }
 }

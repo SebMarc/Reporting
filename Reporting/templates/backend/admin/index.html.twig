@@ -14,15 +14,13 @@
 
 {% block body %}
 <h1 class="text-center">Tableau de Bord - Administration du Site</h1>
-<a href="{{ path('backend_shops_list') }}" class="btn btn-warning">
-                        Nouveau magasin</i>
-                    </a>
+
 
     <div class="container">
 
         <div class="row justify-content-around text-center">
 
-            <a href="#" class="col-10 col-sm-5 btn btn-warning mb-4">Liste des membres</a>
+            <a href="{{ path('backend_users_list') }}" class="col-10 col-sm-5 btn btn-warning mb-4">Liste des membres</a>
             <a href="#" class="col-10 col-sm-5 btn btn-warning mb-4">Liste des techniciens</a>
             <a href="{{ path('backend_shops_list') }}" class="col-10 col-sm-5 btn btn-warning mb-4">Liste des magasins</a>
            

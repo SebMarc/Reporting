@@ -40,6 +40,7 @@ class UserUpdateProfilType extends AbstractType
                 ],
             ])
            
+            ->add('enable')
             ->add('firstname')
             ->add('lastname')
             ->add('name')

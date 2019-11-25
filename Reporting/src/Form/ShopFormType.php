@@ -40,6 +40,7 @@ class ShopFormType extends AbstractType
                 'label' => 'Manager',
                 'mapped' => true
             ])
+            ->add('enable')
         ;
     }
 
