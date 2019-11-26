@@ -109,4 +109,36 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('backend_users_list');
     }
+
+    
+
+    /**
+     * @Route("backend/tech/index", name="backend_techs_list")
+     */
+    public function showtechlist(UserRepository $userRepository, Request $request)
+    {
+        $users = $userRepository->getAllTechnicien();
+
+        $user = new User();
+        $form = $this->createForm(UserUpdateProfilType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager= $this->getDoctrine()->getManager();
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Le technicien a été correctement intégré!'
+            );
+
+            return $this->redirectToRoute('backend_techs_list');
+        }
+        return $this->render('backend/tech/index.html.twig', [
+            'users' => $users,
+            'form' => $form->createView()
+        ]);
+
+    }
 }

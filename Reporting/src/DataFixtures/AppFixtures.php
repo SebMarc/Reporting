@@ -6,7 +6,6 @@ use App\Entity\Category;
 use App\Entity\Commande;
 use App\Entity\Product;
 use App\Entity\User;
-use App\Entity\Magasin;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker;
@@ -35,10 +34,10 @@ class AppFixtures extends Fixture
                 ->setRoles(['ROLE_ADMIN']);
         $password = $this->encoder->encodePassword($user, 'admin');
         $user   ->setPassword($password)
-                ->setUsername('admin')
+                ->setUsername('Teol')
                 ->setFirstname($faker->firstName())
                 ->setLastname($faker->lastName())
-                ->setName('admin')
+                ->setName('Teol')
                 ->setPhone($faker->phoneNumber())
                 ->setEnable(true)
                 ->setAdress($faker->streetAddress)
@@ -48,31 +47,11 @@ class AppFixtures extends Fixture
       
         $manager->persist($user);
 
-        // Création de 10 tech
+        
+
+
+        //Création de 10 Users
         for($i = 0 ; $i <=9 ; $i++) {
-            $user = new User ();
-        $user   ->setEmail(sprintf('tech%d@teol.fr', $i))
-                ->setRoles(['ROLE_TECH']);
-        $password = $this->encoder->encodePassword($user, 'tech');
-        $user   ->setPassword($password);
-        $user   ->setUsername(sprintf('Technicien %d', $i))
-                ->setFirstname($faker->firstName())
-                ->setLastname($faker->lastName())
-                ->setName('')
-                ->setPhone($faker->phoneNumber())
-                ->setEnable(true)
-                ->setAdress($faker->streetAddress)
-                ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
-                ->setCity($faker->city);
-                $userList [] = $user;
-
-        $manager->persist($user)
-        ;
-        }
-
-
-        //Création de 4 Members
-        for($i = 0 ; $i <=4 ; $i++) {
         $customer = new User();
         $customer   ->setEmail(sprintf('member%d@member.fr', $i))
                     ->setRoles(['ROLE_MEMBER']);
@@ -91,6 +70,34 @@ class AppFixtures extends Fixture
                     $manager->persist($customer)
                     ;
         }   
+
+        // Création de 5 tech
+        for ($i = 0 ; $i <=4 ; $i++) {
+            $tech = new User();
+            
+
+            $tech       ->setFirstname($faker->firstName())
+                        ->setRoles(['ROLE_TECH'])
+                        ->setEmail(sprintf('tech%d@teol.fr', $i))
+                        ->setLastname($faker->lastName())
+                        ->setPhone($faker->phoneNumber())
+                        ->setEnable(true);
+            
+            $password = $this->encoder->encodePassword($user, 'tech');
+            $tech       ->setPassword($password)
+                        ->setUsername('Teol')
+                        ->setName('Teol')
+                        ->setAdress($faker->streetAddress)
+                        ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
+                        ->setCity($faker->city);
+                       
+                        
+       
+            $manager->persist($tech);
+        }
+
+           
+        
 
         // Creation de 5 Products
         for($i = 0 ; $i <=4 ; $i++) {
@@ -125,7 +132,7 @@ class AppFixtures extends Fixture
         }
 
         // Creation de 9 magasins
-        for($i = 0 ; $i<= 4 ; $i++) {
+        /*for($i = 0 ; $i<= 4 ; $i++) {
             $shop = new Magasin();
             $shop   ->setName($faker->company())
             ->setAdress($faker->streetAddress())
@@ -138,7 +145,7 @@ class AppFixtures extends Fixture
             ->setEnable(true);
             $manager->persist($shop)
             ;
-        }
+        }*/
 
         $manager->flush();
     }

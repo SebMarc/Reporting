@@ -19,6 +19,16 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function getAllTechnicien() {
+        return $this->createQueryBuilder('u')
+        ->where('u.roles LIKE :val')
+        ->setParameter('val','%ROLE_TECH%')
+        ->getQuery()
+        ->getResult();
+
+
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
