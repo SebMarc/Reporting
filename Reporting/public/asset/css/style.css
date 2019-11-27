@@ -6,6 +6,20 @@ body {
     -o-background-size: cover;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 .headerband {
     background-image: linear-gradient(#DD9D18, #AF692B);
 }
@@ -21,10 +35,6 @@ body {
     border-radius: 10px;
     text-align: center;
     height: 100%;
-}
-
-.menu-li {
-    display: inline;
 }
 
 .profilchoice {

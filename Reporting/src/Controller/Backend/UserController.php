@@ -11,6 +11,37 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
+
+    /**
+     * @Route("backend/user/index", name="backend_users_list")
+     */
+    public function showlist(UserRepository $userRepository, Request $request)
+    {
+        $users = $userRepository->findAll();
+
+        $user = new User();
+        $form = $this->createForm(UserUpdateProfilType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager= $this->getDoctrine()->getManager();
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'L\'utilisateur a été correctement intégré!'
+            );
+
+            return $this->redirectToRoute('backend_users_list');
+        }
+        return $this->render('backend/user/index.html.twig', [
+            'users' => $users,
+            'form' => $form->createView()
+        ]);
+
+    }
+
     /**
      * @Route("/backend/user/edit/{id}", name="backend_user_edit", requirements={"id"="\d+"},)
      */
@@ -44,35 +75,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("backend/user/index", name="backend_users_list")
-     */
-    public function showlist(UserRepository $userRepository, Request $request)
-    {
-        $users = $userRepository->findAll();
-
-        $user = new User();
-        $form = $this->createForm(UserUpdateProfilType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $manager= $this->getDoctrine()->getManager();
-            $manager->persist($user);
-            $manager->flush();
-
-            $this->addFlash(
-                'success',
-                'L\'utilisateur a été correctement intégré!'
-            );
-
-            return $this->redirectToRoute('backend_users_list');
-        }
-        return $this->render('backend/user/index.html.twig', [
-            'users' => $users,
-            'form' => $form->createView()
-        ]);
-
-    }
+    
 
     /**
      * @Route("backend/user/delete/{id}",
@@ -140,5 +143,74 @@ class UserController extends AbstractController
             'form' => $form->createView()
         ]);
 
+    }
+
+     /**
+     * @Route("/backend/tech/edit/{id}", name="backend_tech_edit", requirements={"id"="\d+"},)
+     */
+    public function techedit(Request $request, User $user = null)
+    {
+        if (!$user) {
+            throw $this->createNotFoundException('Le technicien que vous recherchez n\'existe pas !');
+        }
+   
+        $form = $this->createForm(UserUpdateProfilType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $manager= $this->getDoctrine()->getManager();
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Le technicien a été correctement modifié!'
+            );
+
+            return $this->redirectToRoute('backend_techs_list'); 
+        }
+
+    
+        return $this->render('backend/user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+     /**
+     * @Route("backend/tech/delete/{id}",
+     *     name="backend_tech_delete",
+     *     requirements={"id"="\d+"},
+     *     methods={"POST"})
+     */
+    public function techdelete(Request $request, User $user = null)
+    {
+        if (!$user) {
+            throw $this->createNotFoundException('Le technicien que vous recherchez n\'existe pas !');
+        }
+
+        $submittedToken = $request->request->get('token');
+
+        if ($this->isCsrfTokenValid('delete-item', $submittedToken)) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($user);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Le technicien a été supprimé avec succès !'
+            );
+        }
+        else {
+
+            $this->addFlash(
+                'error',
+                'Une erreur s\'est produite. Veuillez réessayer plus tard !'
+            );
+        }
+
+        return $this->redirectToRoute('backend_techs_list');
     }
 }

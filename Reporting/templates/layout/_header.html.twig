@@ -10,20 +10,20 @@
     <nav class=" headermenu navbar navbar-expand-sm  navbar-dark d-flex justify-content-between ">
         <div class="d-flex">
          <!-- Brand -->
-            <a class="navbar-brand" href="{{ path('homepage') }}">TEOL</a>
+            <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('asset/image/logoteol.png') }}" alt="Logo Teol"></a>
+            
  
          <!-- Links -->
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            <ul class="navbar-nav align-items-end">
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
                     La coopérative
                     </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#presentation">Présentation</a>
-                            <a class="dropdown-item" href="#domaine">Domaines d'activité</a>
-                            <a class="dropdown-item" href="#implantation">Notre implantation</a>
-                            <a class="dropdown-item" href="#actualité">Actualités</a>
-                            <a class="dropdown-item" href="#info">Infos pratiques</a>
+                            <a class="dropdown-item" href="{{ path('homepage') }}#presentation">Présentation</a>
+                            <a class="dropdown-item" href="{{ path('homepage') }}#domaine">Domaines d'activité</a>
+                            <a class="dropdown-item" href="{{ path('homepage') }}#implantation">Notre implantation</a>
+                            
                         </div>
                 </li>
 
@@ -44,11 +44,11 @@
                 {# Affichage Technicien si Role Tech #}
                  {% if is_granted('ROLE_TECH') %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
                     Technicien
                     </a>
                         <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Mon compte</a>
+                        <a class="dropdown-item" href="{{ path('tech_profil') }}">Mon compte</a>
                         <a class="dropdown-item" href="#">Documentation</a>
                         </div>
                 </li>
@@ -56,7 +56,7 @@
 
                 {# Magasins #}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
                     Nos magasins
                     </a>
                         <div class="dropdown-menu">
@@ -74,7 +74,7 @@
 
                 {#Offre du Moment#}
                 <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbardrop" data-toggle="dropdown">
                         Offres du Moment
                         </a>
                         <div class="dropdown-menu">
@@ -92,12 +92,19 @@
                 {# Affichage si Role Admin #}
                 {% if is_granted('ROLE_ADMIN') %}
                 <li class="nav-item">
-                <a class="nav-link" href="#">Administrateur</a>
+                <a class="nav-link text-white" href="#">Administrateur</a>
                 </li>
                 {% endif %}
+
+                <li class="nav-item">
+                <a class="nav-link text-white" href="#">Actualités</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link text-white" href="#">Infos pratiques</a>
+                </li>
     </div>
                 {#Offre du Menu navigation#}
-                <div class ="d-flex">
+                <div class ="d-flex ">
                 <li class="nav-item ">
                     <a href="{{ path('homepage') }}" class="nav-link d-flex align-items-center text-white">
                         <i class="fa fa-home mr-2 text-white" aria-hidden="true" ></i>
@@ -123,7 +130,7 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     {% if is_granted('ROLE_TECH') %}
-                                        <a href="{{ path('user_profil') }}" class="dropdown-item">Mon compte</a>
+                                        <a href="{{ path('tech_profil') }}" class="dropdown-item">Mon compte</a>
                                         <a href="#" class="dropdown-item">Documentation</a>
                                     {% endif %}
                                     {% if is_granted('ROLE_ADMIN') %}

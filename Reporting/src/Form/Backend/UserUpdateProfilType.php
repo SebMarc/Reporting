@@ -8,7 +8,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Doctrine\Common\Annotations\Annotation\Required;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -43,8 +45,16 @@ class UserUpdateProfilType extends AbstractType
                     'placeholder' => 'Laisser vide si inchangé',
                 ],
             ])
-           
             
+            ->add('roles', ChoiceType::class, [
+                'multiple' => true,
+                'expanded' => true,
+                'choices' => [
+                    'Adhérent'    => 'ROLE_MEMBER',
+                    'Technicien' => 'ROLE_TECH',
+                    'Admin'     => 'ROLE_ADMIN',
+                ],
+            ])
            
             ->add('firstname', TextType::class, [
                 'label' => 'Prenom'
@@ -65,7 +75,7 @@ class UserUpdateProfilType extends AbstractType
             ->add('city', TextType::class, [
                 'label' => 'Ville'
             ])
-            ->add('name', TextType::class, [
+            ->add('username', TextType::class, [
                 'label' =>'Société'
             ])
             ->add('enable', CheckboxType::class, [

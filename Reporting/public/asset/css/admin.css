@@ -96,3 +96,9 @@ input[type="checkbox"].switch:after {
 input[type="checkbox"].switch:checked:after {
     left: calc(100% - 0.8em);
 }
+
+#user_update_profil_roles {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0.5rem;
+}
