@@ -3,6 +3,7 @@
 namespace App\Form\Backend;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -36,6 +37,8 @@ class UserUpdateProfilType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+       
+      
         $builder
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class, [
@@ -46,6 +49,9 @@ class UserUpdateProfilType extends AbstractType
                 ],
             ])
             
+            
+            
+
             ->add('roles', ChoiceType::class, [
                 'multiple' => true,
                 'expanded' => true,
@@ -75,7 +81,7 @@ class UserUpdateProfilType extends AbstractType
             ->add('city', TextType::class, [
                 'label' => 'Ville'
             ])
-            ->add('username', TextType::class, [
+            ->add('name', TextType::class, [
                 'label' =>'Société'
             ])
             ->add('enable', CheckboxType::class, [

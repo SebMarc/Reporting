@@ -91,6 +91,15 @@ class User implements UserInterface
      */
     private $city;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $technicien;
+
+   
+
+    
+
 
    
 
@@ -315,6 +324,21 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getTechnicien(): ?string
+    {
+        return $this->technicien;
+    }
+
+    public function setTechnicien(?string $technicien): self
+    {
+        $this->technicien = $technicien;
+
+        return $this;
+    }
+
+   
+
 
     
     

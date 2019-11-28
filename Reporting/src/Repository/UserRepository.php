@@ -29,6 +29,15 @@ class UserRepository extends ServiceEntityRepository
 
     }
 
+    public function getClientByTechnicien($id) {
+        return $this->createQueryBuilder('u')
+        ->where('u.technicien LIKE :tech')
+        ->setParameter('tech', $id)
+        ->getQuery()
+        ->getResult();
+
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

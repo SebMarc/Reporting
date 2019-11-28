@@ -17,6 +17,7 @@ class AppFixtures extends Fixture
     private $encoder;
     public $userList = [];
     public $productList = [];
+    public $technicienList = [];
 
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
@@ -43,34 +44,11 @@ class AppFixtures extends Fixture
                 ->setAdress($faker->streetAddress)
                 ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
                 ->setCity($faker->city);
-                $userList [] = $user;
+               
       
         $manager->persist($user);
 
         
-
-
-        //Création de 10 Users
-        for($i = 0 ; $i <=9 ; $i++) {
-        $customer = new User();
-        $customer   ->setEmail(sprintf('member%d@member.fr', $i))
-                    ->setRoles(['ROLE_MEMBER']);
-        $password = $this->encoder->encodePassword($user, 'member');
-        $customer   ->setPassword($password)
-                    ->setUsername('')
-                    ->setFirstname($faker->firstName())
-                    ->setLastname($faker->lastName())
-                    ->setName($faker->company())
-                    ->setPhone($faker->phoneNumber())
-                    ->setEnable(true)
-                    ->setAdress($faker->streetAddress)
-                    ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
-                    ->setCity($faker->city);
-                    $userList [] = $customer;
-                    $manager->persist($customer)
-                    ;
-        }   
-
         // Création de 5 tech
         for ($i = 0 ; $i <=4 ; $i++) {
             $tech = new User();
@@ -90,11 +68,37 @@ class AppFixtures extends Fixture
                         ->setAdress($faker->streetAddress)
                         ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
                         ->setCity($faker->city);
-                       
-                        
-       
+                        $technicienList [] = $tech;
+            
+      
             $manager->persist($tech);
         }
+
+
+        //Création de 10 Users
+        for($i = 0 ; $i <=9 ; $i++) {
+        $customer = new User();
+        $customer   ->setEmail(sprintf('member%d@member.fr', $i))
+                    ->setRoles(['ROLE_MEMBER']);
+        $password = $this->encoder->encodePassword($user, 'member');
+        $customer   ->setPassword($password)
+                    ->setUsername('')
+                    ->setFirstname($faker->firstName())
+                    ->setLastname($faker->lastName())
+                    ->setName($faker->company())
+                    ->setPhone($faker->phoneNumber())
+                    ->setEnable(true)
+                    ->setAdress($faker->streetAddress)
+                    ->setPostalCode($faker->numberBetween(1000, 9000) * 10)
+                    ->setCity($faker->city);
+                    $randomtechnicien = $technicienList[mt_rand(0, count($technicienList) - 1)];
+        $customer   ->setTechnicien($randomtechnicien);
+                    $userList [] = $customer;
+                    $manager->persist($customer)
+                    ;
+        }   
+
+        
 
            
         

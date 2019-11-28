@@ -18,6 +18,7 @@ class UserController extends AbstractController
     public function showlist(UserRepository $userRepository, Request $request)
     {
         $users = $userRepository->findAll();
+        $clients= $userRepository->getClientByTechnicien($this->getUser()->getEmail());
 
         $user = new User();
         $form = $this->createForm(UserUpdateProfilType::class, $user);
@@ -37,6 +38,7 @@ class UserController extends AbstractController
         }
         return $this->render('backend/user/index.html.twig', [
             'users' => $users,
+            'clients' => $clients,
             'form' => $form->createView()
         ]);
 
@@ -47,9 +49,7 @@ class UserController extends AbstractController
      */
     public function edit(Request $request, User $user = null)
     {
-        if (!$user) {
-            throw $this->createNotFoundException('L\'utilisateur que vous recherchez n\'existe pas !');
-        }
+        
    
         $form = $this->createForm(UserUpdateProfilType::class, $user);
         $form->handleRequest($request);

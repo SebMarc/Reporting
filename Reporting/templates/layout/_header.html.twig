@@ -136,7 +136,7 @@
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <a href="{{ path('admin_homepage') }}" class="dropdown-item">Administration</a>
                                     {% endif %}
-                                    {% if is_granted('ROLE_MEMBER') %}
+                                    {% if is_granted('ROLE_MEMBER', 'ROLE_TECH') %}
                                          <a href="{{ path('user_profil') }}" class="dropdown-item">Mon profil</a>
                                     {% endif %}
                                    
