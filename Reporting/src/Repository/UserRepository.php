@@ -21,13 +21,22 @@ class UserRepository extends ServiceEntityRepository
 
     public function getAllTechnicien() {
         return $this->createQueryBuilder('u')
-        ->where('u.roles LIKE :val')
-        ->setParameter('val','%ROLE_TECH%')
+        ->where('u.roles LIKE :role')
+        ->setParameter('role','%ROLE_TECH%')
         ->getQuery()
         ->getResult();
 
 
     }
+
+    public function getAllTechnicienForm() {
+        return $this->createQueryBuilder('u')
+        ->where('u.roles LIKE :role')
+        ->setParameter('role','%ROLE_TECH%');
+
+    }
+
+    
 
     public function getClientByTechnicien($id) {
         return $this->createQueryBuilder('u')

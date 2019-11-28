@@ -3,7 +3,6 @@
 namespace App\Form\Backend;
 
 use App\Entity\User;
-use App\Repository\UserRepository as AppUserRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -18,11 +17,11 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use OC\PlatformBundle\Repository\UserRepository;
 
 
 
-class UserUpdateProfilType extends AbstractType
+
+class TechUpdateProfilType extends AbstractType
 {
     /** @var UserPasswordEncoderInterface $encoder */
     private $encoder;
@@ -50,16 +49,7 @@ class UserUpdateProfilType extends AbstractType
                     'placeholder' => 'Laisser vide si inchangé',
                 ],
             ])
-            
-            ->add('technicien', EntityType::class, [
-                'class'         => User::class,
-                'multiple'      => false,
-                'choice_label'  =>'lastname',
-                'query_builder' => function(AppUserRepository $repository)  {
-                  return $repository->getAllTechnicienForm();
-                }
-            ])
-            
+                        
 
             ->add('roles', ChoiceType::class, [
                 'multiple' => true,

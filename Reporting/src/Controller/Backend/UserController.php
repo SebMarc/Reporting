@@ -45,7 +45,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/backend/user/edit/{id}", name="backend_user_edit", requirements={"id"="\d+"},)
+     * @Route("/backend/user/edit/{id}", name="backend_user_edit", requirements={"id"="\d+"})
      */
     public function edit(Request $request, User $user = null)
     {
