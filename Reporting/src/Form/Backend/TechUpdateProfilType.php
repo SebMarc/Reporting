@@ -49,18 +49,7 @@ class TechUpdateProfilType extends AbstractType
                     'placeholder' => 'Laisser vide si inchangé',
                 ],
             ])
-                        
-
-            ->add('roles', ChoiceType::class, [
-                'multiple' => true,
-                'expanded' => true,
-                'choices' => [
-                    'Adhérent'    => 'ROLE_MEMBER',
-                    'Technicien' => 'ROLE_TECH',
-                    'Admin'     => 'ROLE_ADMIN',
-                ],
-            ])
-           
+                              
             ->add('firstname', TextType::class, [
                 'label' => 'Prenom'
             ])

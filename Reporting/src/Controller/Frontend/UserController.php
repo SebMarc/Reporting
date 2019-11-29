@@ -4,6 +4,7 @@ namespace App\Controller\Frontend;
 
 use App\Entity\User;
 use App\Form\UserUpdateProfilType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,13 +16,15 @@ class UserController extends AbstractController
      * @Route("/user/profil", name="user_profil", methods={"GET"})
      * @throws UnauthorizedHttpException when user member is not logged in
      */
-    public function profil()
+    public function profil(UserRepository $ur, User $user = null)
     {
         if (!$user = $this->getUser()) {
             throw new UnauthorizedHttpException('', 'Vous devez d\'abord vous connectez pour accéder à cette page');
         }
+
         return $this->render('frontend/user/profil.html.twig', [
-            'user' => $user
+            'user' => $user,
+        
         ]);
     }
 

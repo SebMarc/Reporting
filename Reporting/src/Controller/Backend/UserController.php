@@ -4,6 +4,7 @@ namespace App\Controller\Backend;
 
 use App\Entity\User;
 use App\Form\Backend\UserUpdateProfilType;
+use App\Form\Backend\TechUpdateProfilType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +18,8 @@ class UserController extends AbstractController
      */
     public function showlist(UserRepository $userRepository, Request $request)
     {
-        $users = $userRepository->findAll();
+        $users = $userRepository->getAllMemberOnly();
+        //dd($users);
         $clients= $userRepository->getClientByTechnicien($this->getUser()->getEmail());
 
         $user = new User();
@@ -154,7 +156,7 @@ class UserController extends AbstractController
             throw $this->createNotFoundException('Le technicien que vous recherchez n\'existe pas !');
         }
    
-        $form = $this->createForm(UserUpdateProfilType::class, $user);
+        $form = $this->createForm(TechUpdateProfilType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -172,7 +174,7 @@ class UserController extends AbstractController
         }
 
     
-        return $this->render('backend/user/edit.html.twig', [
+        return $this->render('backend/tech/edit.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
         ]);
@@ -212,5 +214,38 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('backend_techs_list');
+    }
+
+    /**
+     * @Route("backend/allusers/index", name="backend_allusers_list")
+     */
+    public function showalllist(UserRepository $userRepository, Request $request)
+    {
+        $users = $userRepository->findAll();
+       
+        $clients= $userRepository->getClientByTechnicien($this->getUser()->getEmail());
+
+        $user = new User();
+        $form = $this->createForm(UserUpdateProfilType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager= $this->getDoctrine()->getManager();
+            $manager->persist($user);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'L\'utilisateur a été correctement intégré!'
+            );
+
+            return $this->redirectToRoute('backend_users_list');
+        }
+        return $this->render('backend/allusers/index.html.twig', [
+            'users' => $users,
+            'clients' => $clients,
+            'form' => $form->createView()
+        ]);
+
     }
 }

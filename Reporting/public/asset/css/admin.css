@@ -1,5 +1,16 @@
 /* --- HEADER --- */
 
+body {
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 .admin__header {
     border-bottom: 1px solid black;
 }

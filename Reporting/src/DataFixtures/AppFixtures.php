@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Commande;
 use App\Entity\Product;
+use App\Entity\Technicien;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -51,7 +52,7 @@ class AppFixtures extends Fixture
         
         // Création de 5 tech
         for ($i = 0 ; $i <=4 ; $i++) {
-            $tech = new User();
+            $tech = new Technicien();
             
 
             $tech       ->setFirstname($faker->firstName())

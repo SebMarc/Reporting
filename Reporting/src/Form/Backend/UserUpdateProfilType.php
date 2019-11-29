@@ -2,8 +2,9 @@
 
 namespace App\Form\Backend;
 
+use App\Entity\Technicien;
 use App\Entity\User;
-use App\Repository\UserRepository as AppUserRepository;
+use App\Repository\TechnicienRepository as AppTechnicienRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -13,12 +14,11 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use OC\PlatformBundle\Repository\UserRepository;
+
 
 
 
@@ -52,10 +52,10 @@ class UserUpdateProfilType extends AbstractType
             ])
             
             ->add('technicien', EntityType::class, [
-                'class'         => User::class,
+                'class'         => Technicien::class,
                 'multiple'      => false,
                 'choice_label'  =>'lastname',
-                'query_builder' => function(AppUserRepository $repository)  {
+                'query_builder' => function(AppTechnicienRepository $repository)  {
                   return $repository->getAllTechnicienForm();
                 }
             ])

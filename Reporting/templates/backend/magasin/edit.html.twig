@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="{{ asset('asset/css/admin.css') }}">
 {% endblock %}
 
+{% block header %}
+    {{ parent() }}
+    {% include 'backend/layout/_admin_header.html.twig' %}
+{% endblock %}
+
 {% block body %}
 <h1 class="text-center">Administration des magasins</h1>
 <div class="user-form">

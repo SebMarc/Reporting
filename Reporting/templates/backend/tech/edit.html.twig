@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin- Nouvel Adhérent{% endblock %}
+{% block title %}Admin- Nouvel Utilisateur{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -13,10 +13,10 @@
 {% endblock %}
 
 {% block body %}
-<h1 class="text-center">Administration des adhérents</h1>
+<h1 class="text-center">Administration des techniciens</h1>
 <div class="user-form">
 
-    <h3>Modifier un adhérent</h3>
+    <h3>Modifier un technicien</h3>
 
     {{ form_start(form) }}
 
@@ -30,10 +30,6 @@
             {{ form_row(form.phone) }}
             {{ form_row(form.email) }}
             {{ form_row(form.password) }}
-            {{ form_row(form.roles) }}
-            {{ form_row(form.technicien) }}
-            
-
             
            
             <div class="form-group row">

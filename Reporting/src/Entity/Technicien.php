@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\TechnicienRepository")
  */
-class User implements UserInterface
+class Technicien
 {
     /**
      * @ORM\Id()
@@ -92,26 +90,20 @@ class User implements UserInterface
     private $city;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\User", mappedBy="tech", cascade={"persist", "remove"})
      */
-    private $technicien;
-
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\technicien", inversedBy="user", cascade={"persist", "remove"})
-     */
-    private $tech;
+    private $user;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $age;
 
-    
 
 
-    /*public function __toString(){
+    public function __toString(){
         return $this->lastname;
-    }*/
+    }
 
     public function __construct()
     
@@ -330,26 +322,20 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getTechnicien(): ?technicien
+    public function getUser(): ?User
     {
-        return $this->technicien;
+        return $this->user;
     }
 
-    public function setTechnicien(?technicien $technicien): self
+    public function setUser(?User $user): self
     {
-        $this->technicien = $technicien;
+        $this->user = $user;
 
-        return $this;
-    }
-
-    public function getTech(): ?technicien
-    {
-        return $this->tech;
-    }
-
-    public function setTech(?technicien $tech): self
-    {
-        $this->tech = $tech;
+        // set (or unset) the owning side of the relation if necessary
+        $newTech = null === $user ? null : $this;
+        if ($user->getTech() !== $newTech) {
+            $user->setTech($newTech);
+        }
 
         return $this;
     }
@@ -366,9 +352,4 @@ class User implements UserInterface
         return $this;
     }
 
-
-
-
-        
-    
 }

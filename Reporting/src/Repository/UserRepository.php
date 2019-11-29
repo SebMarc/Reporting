@@ -25,18 +25,8 @@ class UserRepository extends ServiceEntityRepository
         ->setParameter('role','%ROLE_TECH%')
         ->getQuery()
         ->getResult();
-
-
     }
-
-    public function getAllTechnicienForm() {
-        return $this->createQueryBuilder('u')
-        ->where('u.roles LIKE :role')
-        ->setParameter('role','%ROLE_TECH%');
-
-    }
-
-    
+ 
 
     public function getClientByTechnicien($id) {
         return $this->createQueryBuilder('u')
@@ -44,8 +34,21 @@ class UserRepository extends ServiceEntityRepository
         ->setParameter('tech', $id)
         ->getQuery()
         ->getResult();
-
     }
+
+    public function getAllMemberOnly() {
+        return $this->createQueryBuilder('u')
+        ->where('u.roles LIKE :role')
+        ->setParameter('role','%ROLE_MEMBER%')
+        ->getQuery()
+        ->getResult();
+    }
+
+  
+
+
+
+
 
     // /**
     //  * @return User[] Returns an array of User objects
